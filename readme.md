@@ -2,7 +2,7 @@
 
 
 
-![架构图](demoApp-架构图 .png)
+![架构图](demoApp.png)
 
 
 
