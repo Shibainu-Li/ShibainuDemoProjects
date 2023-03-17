@@ -14,3 +14,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "DemoApp"
 include ':app'
+include ':baseLib'
+include ':dbRoomLibs'
+include ':httpLib'
+include ':toolsLibs'
+include ':cmdLib'

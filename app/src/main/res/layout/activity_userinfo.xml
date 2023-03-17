@@ -4,19 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.main.MainActivity">
+    tools:context=".ui.activity.UserInfoActivity">
 
-    <androidx.viewpager2.widget.ViewPager2
+    <TextView
+        android:id="@+id/activity_home_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="horizontal"
-        android:id="@+id/ac_main_vp2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-
-    <Button
-        android:id="@+id/test_b"
-        android:text="test_b"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
