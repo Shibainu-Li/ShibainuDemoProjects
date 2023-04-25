@@ -7,8 +7,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.sbl.demoapp.databinding.ActivityMainBinding
 import com.sbl.demoapp.vm.DbVm
+import com.sbl.lib_player.testui.TestPlayerActivity
 import com.shibainu.li.baselib.BaseActivity
 import com.shibainu.li.baselib.collectIn
+import com.shibainu.li.toolslibs.toActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -28,6 +30,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
         viewBinding.testB.setOnClickListener {
             mDb.getIsLogin()
+        }
+
+        viewBinding.toFfmpegPlayer.setOnClickListener {
+            toActivity<TestPlayerActivity>()
         }
     }
 
