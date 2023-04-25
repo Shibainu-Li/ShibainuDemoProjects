@@ -7,6 +7,7 @@ import android.view.View
 import com.sbl.demoapp.databinding.FragmentOneBinding
 import com.sbl.demoapp.ui.activity.UserInfoActivity
 import com.shibainu.li.baselib.BaseFragment
+import com.shibainu.li.baselib.testui.NivigationTestActivity
 import com.shibainu.li.baselib.toActivityResultLauncher
 
 class OtherFragment (private val mPos:Int): BaseFragment<FragmentOneBinding>() {
@@ -20,7 +21,8 @@ class OtherFragment (private val mPos:Int): BaseFragment<FragmentOneBinding>() {
         viewBinding.fgTv.apply {
             text = "我是第:${mPos}个Fragment"
             setOnClickListener {
-                toHomeActivity.launch(Intent(context, UserInfoActivity::class.java).apply { putExtra("pos",mPos) })
+//                toHomeActivity.launch(Intent(context, UserInfoActivity::class.java).apply { putExtra("pos",mPos) })
+                toHomeActivity.launch(Intent(context, NivigationTestActivity::class.java).apply { putExtra("pos",mPos) })
             }
         }
     }
