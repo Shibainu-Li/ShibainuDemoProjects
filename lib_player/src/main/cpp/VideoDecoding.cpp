@@ -18,17 +18,30 @@ void VideoDecoding::video_thrad() {
     SwsContext * sws_ctx;
     uint8_t *dst_data[4];
     int dst_linesize[4];
+    int isInit = 0;
+
+    av_image_alloc(dst_data,dst_linesize,codec_ctx->width,codec_ctx->height,AV_PIX_FMT_RGBA,1);
 
     while (is_playing){
         result = av_read_frame(fmt_ctx,packet);
         if(result >= 0){
             result = avcodec_send_packet(codec_ctx,packet);
 
+            if(!isInit){
+                isInit = 1;
+                sws_ctx = sws_getContext(
+                        codec_ctx->width,codec_ctx->height,codec_ctx->pix_fmt,
+                        codec_ctx->width,codec_ctx->height,AV_PIX_FMT_RGBA,
+                        SWS_BILINEAR,0,0,0);
+            }
+
             if(result == AVERROR(EAGAIN)){
                 LOGD("error send packet\n");
             }else{
                 av_packet_unref(packet);
             }
+
+
 
 
             while (result >= 0 && is_playing){
@@ -50,12 +63,9 @@ void VideoDecoding::video_thrad() {
                 }
 
 
-                sws_ctx = sws_getContext(
-                        codec_ctx->width,codec_ctx->height,codec_ctx->pix_fmt,
-                        codec_ctx->width,codec_ctx->height,AV_PIX_FMT_RGBA,
-                        SWS_BILINEAR,0,0,0);
 
-                av_image_alloc(dst_data,dst_linesize,codec_ctx->width,codec_ctx->height,AV_PIX_FMT_RGBA,1);
+
+
 
                 sws_scale(
                         sws_ctx,
