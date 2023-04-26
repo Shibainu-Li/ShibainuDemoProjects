@@ -11,7 +11,7 @@
 
 JavaVM* mVm;
 JNIEnv* mEnv;
-
+jobject javaObject = nullptr;
 SL_Player* mSL_Player;
 Bridge* mBridge;
 
@@ -25,14 +25,15 @@ SL_Player* getInstance(){
 
 
 void setPath(JNIEnv* env,jobject thiz,jstring file_path){
-    mBridge->thiz = thiz;
+    javaObject = env->NewGlobalRef(thiz);
+    mBridge->thiz = javaObject;
     const char* path = env->GetStringUTFChars(file_path, nullptr);
-    getInstance()->file_path = nullptr;
+    getInstance()->file_path = path;
 }
 
 void setWindow(JNIEnv* env,jobject thiz,jobject surface){
-    LOGD("setWindow");
-    getInstance()->window =  ANativeWindow_fromSurface(env,surface);
+    auto s = ANativeWindow_fromSurface(env,surface);
+    getInstance()->window =  s;
 }
 
 
@@ -40,8 +41,22 @@ void preper(JNIEnv* env,jobject thiz){
     getInstance()->preper();
 }
 
-void play(JNIEnv* env,jobject thiz,jint type){}
-void pause(JNIEnv* env,jobject thiz){}
+void play(JNIEnv* env,jobject thiz,jint type){
+
+    switch (type) {
+        case PlayerCMD::ONLY_AUDIO:
+            getInstance()->play_audio();
+            break;
+        case PlayerCMD::ONLY_VIDEO:
+            getInstance()->play_video();
+            break;
+        default:
+            getInstance()->play_audio();
+            getInstance()->play_video();
+            break;
+    }
+}
+void pause(JNIEnv* env,jobject thiz){ getInstance()->pause(); }
 void stop(JNIEnv* env,jobject thiz){}
 
 

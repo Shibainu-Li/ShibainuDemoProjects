@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6.0)
 
-file(GLOB allCpp *.cpp)
+file(GLOB allCpp *.cpp )
 
 add_library(
         player-native-lib

@@ -25,12 +25,28 @@
 
 
     <Button
-        app:layout_constraintStart_toEndOf="@+id/playe_start_video"
-        app:layout_constraintTop_toBottomOf="@+id/player_sur"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playe_start_video"
         android:id="@+id/playe_start_audio"
         android:text="start_audio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
 
+    <Button
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playe_start_audio"
+        android:id="@+id/start_audio_and_video"
+        android:text="start_audio_and_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:id="@+id/playe_pause"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_sur"
+        android:text="pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

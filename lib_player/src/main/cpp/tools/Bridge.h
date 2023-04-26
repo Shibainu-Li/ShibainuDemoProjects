@@ -31,6 +31,24 @@ public:
         }
     }
 
+
+    void callVideoInfo(int width,int height,long times){
+        if(vm->AttachCurrentThread(&env, nullptr) == JNI_OK){
+            jclass jc = env->GetObjectClass(thiz);
+            jmethodID  videoInfoID = env->GetMethodID(jc,"resultVideoInfo","(III)V");
+            env->CallVoidMethod(thiz,videoInfoID,width,height,times);
+        }
+    }
+
+    void callAudioInfo(int sampleRate,int encoding,int channelMask,long times){
+        if(vm->AttachCurrentThread(&env, nullptr) == JNI_OK){
+            jclass jc = env->GetObjectClass(thiz);
+            jmethodID  videoInfoID = env->GetMethodID(jc,"resultAudioInfo","(IIII)V");
+            env->CallVoidMethod(thiz,videoInfoID,sampleRate,encoding,channelMask,times);
+        }
+    }
+
+
 };
 
 
